@@ -1,0 +1,61 @@
+<div class="container text-center py-5 jumbotron">
+  <h3>Reactive Forms</h3>
+</div>
+<div class="container">
+  <div class="form-group">
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <div class="row">
+        <div class="col">
+          <h4>Form Control</h4>
+          <div class="form-group">
+            <label>
+              Name:
+              <input type="text" [formControl]="name" class="form-control">
+            </label>
+            <p>Name: {{ name.value }}</p>
+            <button class="btn btn-primary" (click)="updateName()">Update name</button>
+          </div>
+        </div>
+        <div class="col">
+          <h4>Form Group</h4>
+          <div class="form-group">
+            <label>
+              First Name:
+              <input type="text" class="form-control" formControlName="firstName" required>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              Last Name:
+              <input type="text" class="form-control" formControlName="lastName">
+            </label>
+          </div>
+          <div class="form-group">
+            <p>First Name: {{ profileForm.value?.firstName }}</p>
+            <p>Last Name: {{ profileForm.value?.lastName }}</p>
+            <button type="submit" class="btn btn-primary">Update profile</button>
+          </div>
+        </div>
+        <div class="col">
+          <h4>Aliases</h4>
+          <div class="form-group" formArrayName="aliases">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary" (click)="addAlias()">Add alias</button>
+            </div>
+
+            <div *ngFor="let alias of aliases.controls; let i = index">
+              <label>
+                Alias:
+                <input type="text" class="form-control" [formControlName]="i">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</div>
+
+
